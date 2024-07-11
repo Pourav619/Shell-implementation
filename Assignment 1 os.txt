@@ -1,0 +1,22 @@
+Description:
+	printdir() is a function which prints the current directory. Input is stored in inputString. first() takes this string and passes it to space() which separates the string and stores it in parsed(List) and returns to first which sends the list to mine() which checks whether it is an internal command if yes, executes the internal command and returns 1 else, returns 0. If its an external command with "&t", the list is sent to thr() where thread is created and finally to thre() files are according to the input using system calls and these files are executed. If bin is 1, the list is sent to external(), here files of commands are called using fork() and execvp() functions.
+
+Errors: 
+	Errors like if the user doesn't write any command and hits enter, he is given a prompt about it. During the execution of external command using fork and execvp, if the fork pid gives negative value error is given of not making a child, also if there is any error in executing each of the these commands then a specific error is given to the user. Even the command files generate errors according to the input. Similarly errors are given while using the thread to implement the commands with specific file errors as well.
+
+Options: 
+	Options are given in both internal as well as external commands which works for both type of execution that is fork() and execvp() type as well as using threads to implement the commands. For example command for echo: echo -e prints the input without any space and echo * prints all the files and directories' names.
+
+Assumption: 
+	assumptions like internal commands will never have "&t" at their ends as it is for external commands only and thus not handled in main() while calling thr() function.
+
+Test cases: 
+	Some test cases are:
+	1. ls &t
+	2. pwd -L
+	3. echo *
+	3. mkdir &t
+	4. exit --help
+	5. "Press enter"
+	6. cd ..
+	etc..
